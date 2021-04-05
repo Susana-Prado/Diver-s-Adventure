@@ -26,6 +26,7 @@ class Diver {
 
   updatePosition() {
     this.y += this.direction * this.speed;
+    this.draw();
   }
 
   screenCollision() {
