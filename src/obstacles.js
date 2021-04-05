@@ -5,8 +5,8 @@ class Obstacle {
         this.ctx = this.canvas.getContext('2d');
         this.x = this.canvas.width;
         this.y = positionY;
-        this.width =  20;
-        this.height =  50;
+        this.width =  30;
+        this.height =  120;
     }
 
     draw(){

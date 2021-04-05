@@ -22,7 +22,6 @@ class Game {
 
     //create diver
     this.diver = new Diver(this.canvas, 5);
-    
 
     //Move diver up&down
     function handleKeyDown(event) {
@@ -38,41 +37,35 @@ class Game {
 
   startLoop() {
     const loop = () => {
-
-      //create obstacles   
+      //create obstacles
       if (Math.random() > 0.95) {
-        let randomY = Math.floor((this.canvas.height - 50) * Math.random());
-        
+        let randomY = Math.floor((this.canvas.height - 120) * Math.random());
+
         if (randomY > this.canvas.height / 2) {
-          randomY = this.canvas.height - 50;
+          randomY = this.canvas.height - 120;
         } else {
           randomY = 0;
         }
         const newObstacle = new Obstacle(this.canvas, randomY, 5);
         this.obstacles.push(newObstacle);
       }
+
+      //clear canvas
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
       //update obstacles position
-      this.obstacles.forEach(obstacle =>{
-          obstacle.updatePosition();
-      } ) 
+      this.obstacles.forEach((obstacle) => {
+        obstacle.updatePosition();
+      });
+
       //update diver position
       this.diver.updatePosition();
 
-
-
-
-
-
-
-
       window.requestAnimationFrame(loop);
-    }
+    };
 
     window.requestAnimationFrame(loop);
-
-    
   }
-
 }
 
-//new obstacle (this.canvas, 0//this.canvas.height, speed)
+

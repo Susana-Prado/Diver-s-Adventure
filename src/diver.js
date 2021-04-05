@@ -45,17 +45,6 @@ class Diver {
     this.lives -= 1;
   }
 
-  handleScreenCollision() {
-    const screenTop = 0;
-    const screenBottom = this.canvas.height;
-
-    const diverTop = this.y;
-    const diverBottom = this.y + this.height;
-
-    if (diverBottom >= screenBottom) this.setDirection("up");
-    else if (diverTop <= screenTop) this.setDirection("down");
-  }
-
   didCollide(obstacle) {
     const diverLeft = this.x;
     const diverRight = this.x + this.width;
