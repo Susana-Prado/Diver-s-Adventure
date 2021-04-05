@@ -1,33 +1,32 @@
-const obstaclesArray = [];
-
 class Obstacle {
-    constructor(){
-        this.top = (Math.random() * canvas.height/3);
-        this.bottom = (Math.random() * canvas.height/3);
-        this.x = canvas.width;
-        this.width = 20;
+    constructor(canvas, positionY, speed){
+        this.canvas = canvas;
+        this.speed = speed;
+        this.ctx = this.canvas.getContext('2d');
+        this.x = this.canvas.width;
+        this.y = positionY;
+        this.width =  20;
+        this.height =  50;
     }
 
     draw(){
-        ctx.fillStyle = 'green';
-        ctx.fillRect(this.x, 0, this.top, this.bottom);
-        ctx.fillRect(this.x, canvas.height - this.bottom, this.top, this.bottom);
+        this.ctx.fillStyle = 'green';
+        this.ctx.fillRect(this.x, 0, this.width, this.height);
+        this.ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
     updatePosition(){
-        this.x -= gamespeed;
+        this.x -= this.speed;
         this.draw();
     }
+
+    isInsideScreen() {
+        const obstacleRight = this.x + this.width;
+        const screenLeft = 0;
+        const isInside = obstacleRight > screenLeft;
+        return isInside;
+      }
+
 }
 
-function handleObstacles(){
-    if(frame%100 === 0){
-        obstaclesArray.unshift(new Obstacle());
-    }
-    for (let i = 0; i < obstaclesArray.length; i++){
-        obstaclesArray[i].updatePosition();
-    }
-    if (obstaclesArray.length > 20){
-        obstaclesArray.pop(obstaclesArray[0])
-    }
-}
+
