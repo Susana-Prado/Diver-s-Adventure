@@ -4,6 +4,7 @@ class Game {
     this.ctx = null;
     this.obstacles = [];
     this.diver = null;
+    this.coins = [];
     this.gameIsOver = false;
     //this.gameScreen = gameScreen;
     this.score = 0;
@@ -50,6 +51,17 @@ class Game {
         this.obstacles.push(obstacle);
       }
 
+      //create coins
+
+      if (Math.random() > 0.97) {
+        let randomPosition = Math.floor(
+          (this.canvas.height - 10) * Math.random()
+        );
+
+        const coin = new Coin(this.canvas, randomPosition, 5);
+        this.coins.push(coin);
+      }
+
       //clear canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -65,11 +77,19 @@ class Game {
         obstacle.updatePosition();
       });
 
+      //update coins position
+      this.coins.forEach((coin) => {
+        coin.updatePosition();
+      });
+
       //update diver position
       this.diver.updatePosition();
 
-      //check collisions
+      //check  obstacle collisions
       this.checkCollisions();
+
+      //check coin collision
+      this.coinsCollisions();
 
       if (!this.gameIsOver) {
         window.requestAnimationFrame(loop);
@@ -83,10 +103,9 @@ class Game {
     this.obstacles.forEach((obstacle) => {
       if (this.diver.didCollide(obstacle)) {
         this.diver.removeLife();
-        console.log("lives", this.diver.lives); //remove diver life
 
         if (this.diver.lives === 0) {
-          this.gameIsOver();
+          this.gameIsOver(); //------------------------
         }
 
         obstacle.x = 0 - obstacle.width; // remove obstacle if collision
@@ -94,8 +113,25 @@ class Game {
     });
   }
 
-  gameOver() {
-      this.gameIsOver = true;
-      //endGame(this.score)
+  coinsCollisions() {
+    this.coins.forEach((coin) => {
+      if (this.diver.collide(coin)) {
+        this.score += 5;
+
+        coin.x = 0 - coin.width; // remove coins if collision
+      }
+    });
   }
+
+  gameOver() {
+    this.gameIsOver = true; // --------------------------------
+    //endGame(this.score)
+  }
+
+//   updateGameStats() {
+//     this.livesElement = this.gameScreen.querySelector(".lives .value");
+//     this.scoreElement = this.gameScreen.querySelector(".score .value");
+//     this.livesElement.innerHTML = this.player.lives;
+//     this.scoreElement.innerHTML = this.score;
+//   }
 }
