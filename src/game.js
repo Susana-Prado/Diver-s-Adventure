@@ -69,6 +69,12 @@ class Game {
       this.obstacles = this.obstacles.filter((obstacle) => {
         return obstacle.isInsideScreen();
       });
+
+      //Check if all coins are inside screen. Remove of the array coins outside screen
+      this.coins = this.coins.filter((coin) => {
+        return coin.isInsideScreen();
+      });
+
       //diver is inside screen
       this.diver.screenCollision();
 
