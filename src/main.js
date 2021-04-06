@@ -62,7 +62,7 @@ function removeGameScreen() {
 function createGameOverScreen() {
   gameOverScreen = buildDom(`
         <main>
-            <h1>GAME OVER</h1>
+            <h1>Game Over</h1>
             <p>You got <span>${game.score}</span> coins</p>
             <button>Try again!</button>
         </main>

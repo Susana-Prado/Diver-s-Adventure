@@ -19,8 +19,8 @@ class Game {
     //create canvas
     this.canvas = document.getElementById("canvas1");
     this.ctx = this.canvas.getContext("2d");
-    this.canvas.width = 600;
-    this.canvas.height = 400;
+    this.canvas.width = 800;
+    this.canvas.height = 500;
     //Clear canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
