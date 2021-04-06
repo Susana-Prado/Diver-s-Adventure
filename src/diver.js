@@ -49,19 +49,19 @@ class Diver {
     const diverLeft = this.x;
     const diverRight = this.x + this.width;
     const diverTop = this.y;
-    const diverBottom = this.y + this.heigth;
+    const diverBottom = this.y + this.height;
 
     
-    const obstacleLeft = obstcale.x;
-    const obstcaleRight = obstcale.x + obstcale.width;
-    const obstcaleTop = obstcale.y;
-    const obstcaleBottom = obstcale.y + obstcale.heigth;
+    const obstacleLeft = obstacle.x;
+    const obstacleRight = obstacle.x + obstacle.width;
+    const obstacleTop = obstacle.y;
+    const obstacleBottom = obstacle.y + obstacle.height;
 
    
-    const crossLeft = obstacleLeft <= diverRight && obstcaleLeft >= diverLeft;
-    const crossRight = obstcaleRight >= diverLeft && obstcaleRight <= diverRight;
-    const crossBottom = obstcaleBottom >= diverTop && obstcaleBottom <= diverBottom;
-    const crossTop = obstcaleTop <= diverBottom && obstcaleTop >= diverTop;
+    const crossRight = diverRight >= obstacleLeft && diverRight <= obstacleRight;
+    const crossLeft = diverLeft >= obstacleLeft && diverLeft <= obstacleRight;
+    const crossTop = diverTop >= obstacleBottom && diverTop <= obstacleTop;
+    const crossBottom = diverBottom >= obstacleTop && diverBottom <= obstacleBottom;
 
     if ((crossLeft || crossRight) && (crossTop || crossBottom)){
         return true;
