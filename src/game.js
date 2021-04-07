@@ -26,7 +26,7 @@ class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     //create diver
-    this.diver = new Diver(this.canvas, 5);
+    this.diver = new Diver(this.canvas, 5, '/images/spritesheets/black-suited-diver-perframe.png');
 
     //Move diver up&down
     function handleKeyDown(event) {
@@ -78,6 +78,8 @@ class Game {
         //     }
         // }
 
+        // const bubble = new Bubble(this.canvas, (Math.random() * 1) - 0.5);
+        // this.bubbles.push(bubble);
 
       //clear canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -135,6 +137,12 @@ class Game {
         }
 
         obstacle.x = 0 - obstacle.width; // remove obstacle if collision
+
+        const collisionSound = new Audio('/audio/explosion.wav');
+        collisionSound.volume = .3;
+
+        collisionSound.play();
+        
       }
     });
   }
@@ -145,6 +153,10 @@ class Game {
         this.score += 5;
 
         coin.x = 0 - coin.width; // remove coins if collision
+
+        const coinSound = new Audio('/audio/coin(1).wav');
+        coinSound.volume = .3;
+        coinSound.play();
       }
     });
   }

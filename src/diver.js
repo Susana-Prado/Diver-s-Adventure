@@ -1,19 +1,41 @@
 class Diver {
-  constructor(canvas, lives) {
+  constructor(canvas, lives, diverImgSrc) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
     this.lives = lives;
     this.x = 150;
     this.y = 200;
     this.direction = 0;
-    this.width = 50;
-    this.height = 30;
+    this.width = 100;
+    this.height = 50;
     this.speed = 5;
+    this.image = new Image();
+    this.image.src = diverImgSrc;
+    this.frames = 3;
+    this.framesIndex = 0;
   }
 
-  draw() {
-    this.ctx.fillStyle = "#66D3FA";
-    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+  draw(framesCounter) {
+    this.ctx.drawImage(
+      this.image,
+      this.framesIndex * Math.floor(this.image.width / this.frames),
+      0,
+      Math.floor(this.image.width / this.frames),
+      this.image.height,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
+    this.animate(framesCounter)
+  }
+
+  animate(framesCounter){
+    if(framesCounter % 10 === 0) {
+      this.framesIndex++;
+
+      if(this.framesIndex > 2) this.framesIndex = 0;
+    }
   }
 
   setDirection(direction) {
@@ -56,10 +78,12 @@ class Diver {
     const obstacleTop = obstacle.y;
     const obstacleBottom = obstacle.y + obstacle.height;
 
-    const crossRight = diverRight >= obstacleLeft && diverRight <= obstacleRight;
+    const crossRight =
+      diverRight >= obstacleLeft && diverRight <= obstacleRight;
     const crossLeft = diverLeft >= obstacleLeft && diverLeft <= obstacleRight;
     const crossTop = diverTop >= obstacleBottom && diverTop <= obstacleTop;
-    const crossBottom = diverBottom >= obstacleTop && diverBottom <= obstacleBottom;
+    const crossBottom =
+      diverBottom >= obstacleTop && diverBottom <= obstacleBottom;
 
     if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
       return true;

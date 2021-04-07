@@ -18,6 +18,8 @@ const gameSound = new Audio('/audio/game.wav');
 gameSound.loop = true;
 gameSound.volume = .3
 
+const gameOverSound = new Audio('/audio/game over.wav');
+
 
 // Create Screens
 function buildDom(htmlString) {
@@ -70,7 +72,7 @@ function createGameScreen() {
         `);
   backgroundSound.play();
   backgroundDiving.play();
-  gameSound.play();
+
 
   document.body.appendChild(gameScreen);
   return gameScreen;
@@ -90,6 +92,11 @@ function createGameOverScreen() {
             <button>Try again!</button>
         </main>
         `);
+
+    backgroundSound.pause();
+    backgroundDiving.pause();
+    gameOverSound.play();
+
   const button = gameOverScreen.querySelector("button");
   button.addEventListener("click", (event) => {
     bubbleSound.play();
