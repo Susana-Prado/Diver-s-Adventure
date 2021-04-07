@@ -5,6 +5,7 @@ class Game {
     this.obstacles = [];
     this.diver = null;
     this.coins = [];
+    this.bubbles = [];
     this.gameIsOver = false;
     this.gameScreen = gameScreen;
     this.score = 0;
@@ -15,7 +16,7 @@ class Game {
   start() {
     this.livesElement = this.gameScreen.querySelector(".lives .value");
     this.scoreElement = this.gameScreen.querySelector(".score .value");
-
+    
     //create canvas
     this.canvas = document.getElementById("canvas1");
     this.ctx = this.canvas.getContext("2d");
@@ -43,10 +44,10 @@ class Game {
     const loop = () => {
       //create obstacles
       if (Math.random() > 0.96) {
-        let randomY = Math.floor((this.canvas.height - 120) * Math.random());
+        let randomY = Math.floor((this.canvas.height) * Math.random());
 
         if (randomY > this.canvas.height / 2) {
-          randomY = this.canvas.height - 120;
+          randomY = this.canvas.height;
         } else {
           randomY = 0;
         }
@@ -61,9 +62,22 @@ class Game {
           (this.canvas.height - 10) * Math.random()
         );
 
-        const coin = new Coin(this.canvas, randomPositionY, 5);
+        const coin = new Coin(this.canvas, randomPositionY, 5, '/images/bitcoin.jpg');
         this.coins.push(coin);
       }
+
+      // create bubbles
+        // this.bubbles.unshift(new Bubble);
+        // for(i = 0; i< this.bubbles.length; i++){
+        //     this.bubbles[i].updatePosition();
+        // }
+
+        // if(this.bubbles.length > 200){
+        //     for(let i =0; i < 20; i++){
+        //         this.bubbles.pop(this.bubbles[i])
+        //     }
+        // }
+
 
       //clear canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

@@ -3,6 +3,23 @@ let splashScreen;
 let gameScreen;
 let gameOverScreen;
 
+// Audio
+const bubbleSound = new Audio("../audio/ES_Water Bubble 7 - SFX Producer.mp3");
+
+const backgroundSound = new Audio("../audio/bubbles_54.mp3");
+backgroundSound.loop = true;
+backgroundSound.volume = .3;
+
+const backgroundDiving = new Audio("/audio/diving.wav");
+backgroundDiving.loop = true;
+backgroundSound.volume = .3;
+
+const gameSound = new Audio('/audio/game.wav');
+gameSound.loop = true;
+gameSound.volume = .3
+
+
+// Create Screens
 function buildDom(htmlString) {
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = htmlString;
@@ -21,7 +38,10 @@ function createSplashScreen() {
   document.body.appendChild(splashScreen);
 
   const startButton = splashScreen.querySelector("button");
-  startButton.addEventListener("click", startGame);
+  startButton.addEventListener("click", (event) => {
+    bubbleSound.play();
+    startGame();
+  });
 }
 
 function removeSplashScreen() {
@@ -48,6 +68,9 @@ function createGameScreen() {
             <canvas id="canvas1"></canvas>
         </div>
         `);
+  backgroundSound.play();
+  backgroundDiving.play();
+  gameSound.play();
 
   document.body.appendChild(gameScreen);
   return gameScreen;
@@ -68,7 +91,10 @@ function createGameOverScreen() {
         </main>
         `);
   const button = gameOverScreen.querySelector("button");
-  button.addEventListener("click", startGame);
+  button.addEventListener("click", (event) => {
+    bubbleSound.play();
+    startGame();
+  });
 
   document.body.appendChild(gameOverScreen);
 }

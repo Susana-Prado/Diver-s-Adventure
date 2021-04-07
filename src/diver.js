@@ -56,12 +56,10 @@ class Diver {
     const obstacleTop = obstacle.y;
     const obstacleBottom = obstacle.y + obstacle.height;
 
-    const crossRight =
-      diverRight >= obstacleLeft && diverRight <= obstacleRight;
+    const crossRight = diverRight >= obstacleLeft && diverRight <= obstacleRight;
     const crossLeft = diverLeft >= obstacleLeft && diverLeft <= obstacleRight;
     const crossTop = diverTop >= obstacleBottom && diverTop <= obstacleTop;
-    const crossBottom =
-      diverBottom >= obstacleTop && diverBottom <= obstacleBottom;
+    const crossBottom = diverBottom >= obstacleTop && diverBottom <= obstacleBottom;
 
     if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
       return true;

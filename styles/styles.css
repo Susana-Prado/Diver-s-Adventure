@@ -30,11 +30,13 @@ main button {
   font-size: 2em;
   font-weight: bold;
   color: #fff;
+  font-family: 'Poppins', sans-serif;
 }
 
 main p {
   font-size: 2em;
   font-weight: bold;
+  font-family: 'Poppins', sans-serif;
 }
 
 header {
@@ -43,6 +45,7 @@ header {
   justify-content: space-around;
   margin: 50px 40px;
   font-size: 1.5em;
+  font-family: 'Poppins', sans-serif;
 }
 
 #canvas1 {
