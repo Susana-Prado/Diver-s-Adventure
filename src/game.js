@@ -26,7 +26,7 @@ class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     //create diver
-    this.diver = new Diver(this.canvas, 5, '/images/black_suited_diver_perframe.png');
+    this.diver = new Diver(this.canvas, 5, 'images/black_suited_diver_perframe.png');
 
     //Move diver up&down
     function handleKeyDown(event) {
@@ -138,7 +138,7 @@ class Game {
 
         obstacle.x = 0 - obstacle.width; // remove obstacle if collision
 
-        const collisionSound = new Audio('/audio/explosion.wav');
+        const collisionSound = new Audio('audio/explosion.wav');
         collisionSound.volume = .3;
 
         collisionSound.play();
@@ -154,7 +154,7 @@ class Game {
 
         coin.x = 0 - coin.width; // remove coins if collision
 
-        const coinSound = new Audio('/audio/coin(1).wav');
+        const coinSound = new Audio('audio/coin(1).wav');
         coinSound.volume = .3;
         coinSound.play();
       }
