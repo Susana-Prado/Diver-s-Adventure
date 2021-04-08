@@ -1,6 +1,6 @@
 ## About the game
 
-This is a side-scrolling game where a diver has to collect coins while avoiding obstacles in order to reach the treasure. Each coin is 1 point and hitting an obstacle three times ends the game. The goal is to get the highest score and get the treasure.
+This is a side-scrolling game where a diver has to collect coins while avoiding obstacles in order to reach the treasure. Each coin is 5 points and hitting an obstacle 5 times ends the game. The goal is to get the highest score and get the treasure.
 
 
 
@@ -18,9 +18,9 @@ This is a side-scrolling game where a diver has to collect coins while avoiding 
 
 ## MVP (DOM - CANVAS)
 
-This is a game where the player can move to collect coins
+This is a game where the player moves up and down to collect coins
 
-- Create 4 states (splashscreen page, game page, gameover page, youwin page)
+- Create 3 states (splashscreen page, game page, gameover page)
 
 - Start the game with "Start button"
 
@@ -33,11 +33,9 @@ This is a game where the player can move to collect coins
 
 - Use collision logic to control game state
 
-- End game after 3 collisions
+- End game after 5 collisions
 
-- Win if diver gets the treasure
-
-- Restart on game over/ you win screen
+- Restart on game over
 
   
 
@@ -47,9 +45,15 @@ This is a game where the player can move to collect coins
 
 - Add audio effects
 
-- Increase speed as time goes on 
+- Create sprites 
 
-- Levels
+- Replace objects with images
+
+- Create bubbles coming out of the diver
+
+- Win if diver gets the treasure
+
+- Create a 4th state - You win screen
 
   
 
@@ -64,39 +68,11 @@ This is a game where the player can move to collect coins
 ### CSS
 
 - centered game screen
+- styles
 
 ### Javascript
 
-#### Tasks
-
-- Main - buildDom
-- Main - buildSplashScreen
-- Main - buildGameScreen
-- Main - buildGameOverScreen
-- Main - buildYouWinScreen
-- Game - buildCanvas
-- Game - clearCanvas
-- Game - updateCanvas
-- Game - drawCanvas
-- Game - setGameOver
-- Game - setYouWin
-- Diver - drawImage
-- Diver - setDirection
-- Diver - updatePosition
-- Diver - removeLife
-- Obstacle - drawImage
-- Obtscale - setPosition
-- Obstacle - removeObstacle
-- Coins - drawImage
-- Coins -  removeCoins
-
-
-
 #### Functions
-
-Basic (startGame, moveDiver, setObstacles, setCoins, checkCollision, checkTreasure)
-
-Update (game screen, positions)
 
 ##### States & States Transitions
 
@@ -153,6 +129,10 @@ startGame(){
 
 endGame(){
 }
+
+winGame(){
+    
+}
 ```
 
 ##### game.js
@@ -160,56 +140,50 @@ endGame(){
 ```javascript
 class Game(){
   constructor (gameScreen){
-    this.canvas;
+   	this.canvas;
     this.ctx;
     this.obstacles;
     this.diver;
     this.coins;
+    this.bubbles;
+    this.treasure;
     this.gameIsOver;
+    this.gameWin;
     this.gameScreen;
     this.score;
-    this.lives;
+    this.livesElement;
+    this.scoreElement;
+    this.framesCounter;
   }
     
-drawCanvas(){ 
+start(){ 
 }
     
 startLoop(){
+   loop();
 }
-    
-displayDiver(){
-    
-}
-     
-displayObstacle{
-    //obstacle's x decrease to scroll left - generate y randomly
-}
-    
-displayCoins(){
-    //generate randomly
-}
-
-clearCanvas(){
-}
-
-updateCanvas(){
-}
-    
+        
 checkCollisions{
 }
 
-setGameOver(){
-    //after 3 collisions with obstacles
+getTreasure(){
+}
+
+gameOver(){
+    //after 5 collisions with obstacles
     //restart game on click button
     //display current score and reset
     //reset obstacles and coins
 }
     
-setYouWin(){
+youWin(){
     //collision with treasure
     //restart game on click button
     //display current score and reset
     //reset obstacles and coins
+}
+    
+updateGameStats(){
 }
 }
 ```
@@ -219,27 +193,29 @@ setYouWin(){
 ```javascript
 class Diver(){
     this.canvas;
+    this.ctx;
+    this.lives;
     this.x;
     this.y;
-    this.size;
     this.direction;
+    this.width;
+    this.height;
     this.speed;
-    this.lives;
+    this.image;
+    this.image.src;
+    this.frames;
+    this.framesIndex;
 }
 
 draw(){
     
 }
 
+animate(){
+    
+}
+
 setDirection(){
-    
-}
-
-goDown(){
-    
-}
-
-goUp(){
     
 }
 
@@ -251,6 +227,14 @@ removeLife(){
     
 }
 
+screenCollision(){
+    
+}
+
+didCollide(){
+    
+}
+
 
 ```
 
@@ -259,42 +243,11 @@ removeLife(){
 ```javascript
 class Obstcale(){
     this.canvas;
-    this.x;
-    this.y;
-    this.size;
-    //this.speed;
-}
-
-drawObstacle(){
-    
-}
-
-updatePosition(){
-    
-}
-
-isInsideScreen(){
-    
-}
-
-removeObstacle){
-    
-}
-
-
-```
-
-
-
-##### coins.js
-
-```javascript
-Coins(){
-    this.canvas;
-    this.x;
-    this.y;
-    this.size;
     this.speed;
+    this.ctx;
+    this.x;
+    this.y;
+    this.width;
 }
 
 draw(){
@@ -309,11 +262,109 @@ isInsideScreen(){
     
 }
 
-removeCoins(){
+```
+
+
+
+##### coins.js
+
+```javascript
+Coins(){
+    this.canvas;
+    this.speed;
+    this.ctx;
+    this.x;
+    this.y;
+    this.width;
+    this.height;
+    this.image;
+}
+
+draw(){
     
 }
 
+updatePosition(){
+    
+}
 
+isInsideScreen(){
+    
+}
+
+```
+
+
+
+##### bubbles.js
+
+```javascript
+class Bubble {
+    constructor(){
+        this.canvas;
+        this.ctx;
+        this.speed;
+        this.x;
+        this.y ;
+        this.size;
+        this.diver;
+    }
+
+    updatePosition(){
+       
+    }
+
+    draw(){
+       
+    }
+
+    isInsideScreen() {
+       
+      }
+}
+```
+
+
+
+##### treasure.js
+
+```javascript
+class Treasure{
+    constructor(){
+        this.canvas;
+        this.ctx;
+        this.x;
+        this.y;
+        this.width;
+        this.height;
+        this.image;
+        this.speed;
+    }
+
+    draw() {
+       
+    }
+
+    updatePosition() {
+     
+      }
+}
+```
+
+
+
+##### timer.js
+
+```
+class Timer{
+    constructor(){
+        this.value;
+    }
+
+    startTimer(){
+    }
+
+}
 
 ```
 
@@ -328,6 +379,8 @@ https://trello.com/b/siIE4x6l/project-1
 ### Git
 
 URls for the project repo and deploy
+
+https://susana-prado.github.io/Diver-s-Adventure/
 
 
 

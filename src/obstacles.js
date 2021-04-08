@@ -7,14 +7,14 @@ class Obstacle {
     if (positionY > 0) {
       this.image = new Image();
       this.image.src = 'images/seaweed_transparent.png';
-      let randomHeight = Math.random() * (this.canvas.height / 3) + 60;
+      let randomHeight = Math.random() * (this.canvas.height / 3) + 50;
       this.y = positionY - randomHeight;
       this.height = randomHeight;
     } else {
       this.image = new Image();
       this.image.src = obstacleImgSrc;
       this.y = positionY;
-      this.height = Math.random() * (this.canvas.height / 3) + 60;
+      this.height = Math.random() * (this.canvas.height / 3) + 50;
     }
     this.width = 100;
   }
