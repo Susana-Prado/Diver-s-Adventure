@@ -4,21 +4,21 @@ let gameScreen;
 let gameOverScreen;
 
 // Audio
-const bubbleSound = new Audio('/audio/water_bubble.mp3');
+const bubbleSound = new Audio('audio/water_bubble.mp3');
 
-const backgroundSound = new Audio("/audio/bubbles_54.mp3");
+const backgroundSound = new Audio("audio/bubbles_54.mp3");
 backgroundSound.loop = true;
 backgroundSound.volume = .3;
 
-const backgroundDiving = new Audio("/audio/diving.wav");
+const backgroundDiving = new Audio("audio/diving.wav");
 backgroundDiving.loop = true;
 backgroundSound.volume = .3;
 
-const gameSound = new Audio('/audio/game.wav');
+const gameSound = new Audio('audio/game.wav');
 gameSound.loop = true;
 gameSound.volume = .3
 
-const gameOverSound = new Audio('/audio/game over.wav');
+const gameOverSound = new Audio('audio/game over.wav');
 
 
 // Create Screens
