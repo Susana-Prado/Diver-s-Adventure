@@ -6,6 +6,7 @@ class Game {
     this.diver = null;
     this.coins = [];
     this.bubbles = [];
+    this.treasure = null;
     this.gameIsOver = false;
     this.gameScreen = gameScreen;
     this.score = 0;
@@ -16,7 +17,7 @@ class Game {
   start() {
     this.livesElement = this.gameScreen.querySelector(".lives .value");
     this.scoreElement = this.gameScreen.querySelector(".score .value");
-    
+
     //create canvas
     this.canvas = document.getElementById("canvas1");
     this.ctx = this.canvas.getContext("2d");
@@ -26,7 +27,16 @@ class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     //create diver
-    this.diver = new Diver(this.canvas, 5, 'images/black_suited_diver_perframe.png');
+    this.diver = new Diver(
+      this.canvas,
+      5,
+      "images/black_suited_diver_perframe.png"
+    );
+
+    //create timer
+
+    this.timer = new Timer();
+    this.timer.startTimer();
 
     //Move diver up&down
     function handleKeyDown(event) {
@@ -44,7 +54,7 @@ class Game {
     const loop = () => {
       //create obstacles
       if (Math.random() > 0.96) {
-        let randomY = Math.floor((this.canvas.height) * Math.random());
+        let randomY = Math.floor(this.canvas.height * Math.random());
 
         if (randomY > this.canvas.height / 2) {
           randomY = this.canvas.height;
@@ -67,19 +77,26 @@ class Game {
       }
 
       // create bubbles
-        // this.bubbles.unshift(new Bubble);
-        // for(i = 0; i< this.bubbles.length; i++){
-        //     this.bubbles[i].updatePosition();
-        // }
 
-        // if(this.bubbles.length > 200){
-        //     for(let i =0; i < 20; i++){
-        //         this.bubbles.pop(this.bubbles[i])
-        //     }
-        // }
+      const bubble = new Bubble(this.canvas, Math.random() * 1 - 0.5, this.diver);
+      this.bubbles.push(bubble);
+      for (let i = 0; i < this.bubbles.length; i++) {
+        this.bubbles[i].updatePosition();
+      }
+      if (this.bubbles.length > 100) {
+        for (let i = 0; i < 20; i++) {
+          this.bubbles.pop(this.bubbles[i]);
+        }
+      }
 
-        // const bubble = new Bubble(this.canvas, (Math.random() * 1) - 0.5);
-        // this.bubbles.push(bubble);
+      //create treasure
+
+      this.treasure = new Treasure(this.canvas);
+
+      if (this.timer.value > 10) {
+        console.log("10sec");
+        this.treasure.draw();
+      }
 
       //clear canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -133,16 +150,15 @@ class Game {
         this.diver.removeLife();
 
         if (this.diver.lives === 0) {
-          this.gameOver(); 
+          this.gameOver();
         }
 
         obstacle.x = 0 - obstacle.width; // remove obstacle if collision
 
-        const collisionSound = new Audio('audio/explosion.wav');
-        collisionSound.volume = .3;
+        const collisionSound = new Audio("audio/explosion.wav");
+        collisionSound.volume = 0.3;
 
         collisionSound.play();
-        
       }
     });
   }
@@ -154,15 +170,15 @@ class Game {
 
         coin.x = 0 - coin.width; // remove coins if collision
 
-        const coinSound = new Audio('audio/coin(1).wav');
-        coinSound.volume = .3;
+        const coinSound = new Audio("audio/coin(1).wav");
+        coinSound.volume = 0.3;
         coinSound.play();
       }
     });
   }
 
   gameOver() {
-    this.gameIsOver = true; 
+    this.gameIsOver = true;
     endGame(this.score);
   }
 

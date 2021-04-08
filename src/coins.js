@@ -1,5 +1,5 @@
 class Coin {
-  constructor(canvas, positionY, speed, coinImgSrc) {
+  constructor(canvas, positionY, speed) {
     this.canvas = canvas;
     this.speed = speed;
     this.ctx = this.canvas.getContext("2d");
@@ -7,8 +7,8 @@ class Coin {
     this.y = positionY;
     this.width = 20;
     this.height = 20;
-    this.image = new Image();
-    this.image.src = coinImgSrc;
+    // this.image = new Image();
+    // this.image.src = coinImgSrc;
   }
 
   draw() {

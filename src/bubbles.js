@@ -1,5 +1,5 @@
 class Bubble {
-    constructor(canvas, speedY){
+    constructor(canvas, speedY, diver){
         this.canvas = canvas;
         this.ctx = this.canvas.getContext('2d');
         this.speed = speedY;
@@ -7,7 +7,7 @@ class Bubble {
         this.y = diver.y;
         this.size = Math.random() * 7 + 3;
         this.speed = speedY;
-        this.color = 'blue';
+        this.diver = diver;
     }
 
     updatePosition(){
@@ -17,10 +17,10 @@ class Bubble {
     }
 
     draw(){
-        this.ctx.fillStyle = this.color;
+        this.ctx.fillStyle = 'blue';
+        this.ctx.fill();
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        this.ctx.fill();
     }
 
 

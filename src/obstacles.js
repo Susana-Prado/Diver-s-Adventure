@@ -1,5 +1,5 @@
 class Obstacle {
-  constructor(canvas, positionY, speed, obstacleImgSrc) {
+  constructor(canvas, positionY, speed) {
     this.canvas = canvas;
     this.speed = speed;
     this.ctx = this.canvas.getContext("2d");
@@ -13,8 +13,8 @@ class Obstacle {
       this.height = (Math.random() * (this.canvas.height/3) + 50);
     }
     this.width = 30;
-    this.image = new Image();
-    this.image.src = obstacleImgSrc;
+    // this.image = new Image();
+    // this.image.src = obstacleImgSrc;
   }
 
   draw() {
