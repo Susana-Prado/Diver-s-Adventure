@@ -25,7 +25,7 @@ class Bubble {
     isInsideScreen() {
         const bubblesRight = this.x + this.width;
         const screenLeft = 0;
-        const isInside = treasureRight > screenLeft;
+        const isInside = bubblesRight > screenLeft;
         return isInside;
       }
 

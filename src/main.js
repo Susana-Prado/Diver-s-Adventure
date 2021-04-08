@@ -134,6 +134,7 @@ function createYouWinScreen() {
       backgroundSound.pause();
       backgroundDiving.pause();
       youWinSound.play();
+      gameTheme.pause();
   
     const button = youWinScreen.querySelector("button");
     button.addEventListener("click", (event) => {
