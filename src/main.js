@@ -104,6 +104,7 @@ function createGameOverScreen() {
 
     backgroundSound.pause();
     backgroundDiving.pause();
+    gameTheme.pause();
     gameOverSound.play();
 
   const button = gameOverScreen.querySelector("button");
