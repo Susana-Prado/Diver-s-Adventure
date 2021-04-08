@@ -6,12 +6,12 @@ class Diver {
     this.x = 150;
     this.y = 200;
     this.direction = 0;
-    this.width = 100;
-    this.height = 50;
-    this.speed = 5;
+    this.width = 110;
+    this.height = 60;
+    this.speed = 4;
     this.image = new Image();
     this.image.src = diverImgSrc;
-    this.frames = 16;
+    this.frames = 4;
     this.framesIndex = 0;
   }
 
@@ -27,14 +27,14 @@ class Diver {
       this.width,
       this.height
     );
-    this.animate(framesCounter)
+    this.animate(framesCounter);
   }
 
   animate(framesCounter){
-    if(framesCounter % 10 === 0) {
+    if(framesCounter % 5 === 0) {
       this.framesIndex++;
 
-      if(this.framesIndex > 2) this.framesIndex = 0;
+      if(this.framesIndex > 3) this.framesIndex = 0;
     }
   }
 
@@ -46,9 +46,9 @@ class Diver {
     }
   }
 
-  updatePosition() {
+  updatePosition(framesCounter) {
     this.y += this.direction * this.speed;
-    this.draw();
+    this.draw(framesCounter);
   }
 
   screenCollision() {
@@ -78,12 +78,10 @@ class Diver {
     const obstacleTop = obstacle.y;
     const obstacleBottom = obstacle.y + obstacle.height;
 
-    const crossRight =
-      diverRight >= obstacleLeft && diverRight <= obstacleRight;
+    const crossRight = diverRight >= obstacleLeft && diverRight <= obstacleRight;
     const crossLeft = diverLeft >= obstacleLeft && diverLeft <= obstacleRight;
     const crossTop = diverTop >= obstacleBottom && diverTop <= obstacleTop;
-    const crossBottom =
-      diverBottom >= obstacleTop && diverBottom <= obstacleBottom;
+    const crossBottom = diverBottom >= obstacleTop && diverBottom <= obstacleBottom;
 
     if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
       return true;

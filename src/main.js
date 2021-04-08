@@ -2,6 +2,7 @@ let game;
 let splashScreen;
 let gameScreen;
 let gameOverScreen;
+let youWinScreen;
 
 // Audio
 const bubbleSound = new Audio('audio/water_bubble.mp3');
@@ -19,6 +20,8 @@ gameSound.loop = true;
 gameSound.volume = .3
 
 const gameOverSound = new Audio('audio/game over.wav');
+
+const youWinSound = new Audio('audio/win(2).wav');
 
 
 // Create Screens
@@ -109,6 +112,34 @@ function createGameOverScreen() {
 function removeGameOverScreen() {
   gameOverScreen.remove();
 }
+
+// You Win Screen
+
+function createYouWinScreen() {
+    youWinScreen = buildDom(`
+          <main>
+              <h1>You win the treasure!</h1>
+              <p>You got <span>${game.score}</span> coins</p>
+              <button>Play again</button>
+          </main>
+          `);
+  
+      backgroundSound.pause();
+      backgroundDiving.pause();
+      youWinSound.play();
+  
+    const button = youWinScreen.querySelector("button");
+    button.addEventListener("click", (event) => {
+      bubbleSound.play();
+      startGame();
+    });
+  
+    document.body.appendChild(youWinScreen);
+  }
+  
+  function removeYouWinScreen() {
+    youWinScreen.remove();
+  }
 
 // Start and end game
 

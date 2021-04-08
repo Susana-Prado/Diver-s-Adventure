@@ -12,6 +12,7 @@ class Game {
     this.score = 0;
     this.livesElement = undefined;
     this.scoreElement = undefined;
+    this.framesCounter = 0;
   }
 
   start() {
@@ -27,10 +28,7 @@ class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     //create diver
-    this.diver = new Diver(
-      this.canvas,
-      5,
-      "images/black_suited_diver_perframe.png"
+    this.diver = new Diver(this.canvas, 5,"/images/black_suited_diver_perframe(2).png"
     );
 
     //create timer
@@ -52,8 +50,9 @@ class Game {
 
   startLoop() {
     const loop = () => {
+        this.framesCounter++;
       //create obstacles
-      if (Math.random() > 0.96) {
+      if (Math.random() > 0.95) {
         let randomY = Math.floor(this.canvas.height * Math.random());
 
         if (randomY > this.canvas.height / 2) {
@@ -61,7 +60,7 @@ class Game {
         } else {
           randomY = 0;
         }
-        const obstacle = new Obstacle(this.canvas, randomY, 5);
+        const obstacle = new Obstacle(this.canvas, randomY, 5, 'images/seaweed_transparent_top.png');
         this.obstacles.push(obstacle);
       }
 
@@ -72,7 +71,7 @@ class Game {
           (this.canvas.height - 10) * Math.random()
         );
 
-        const coin = new Coin(this.canvas, randomPositionY, 5);
+        const coin = new Coin(this.canvas, randomPositionY, 5, 'images/coin.png');
         this.coins.push(coin);
       }
 
@@ -80,26 +79,32 @@ class Game {
 
       const bubble = new Bubble(this.canvas, Math.random() * 1 - 0.5, this.diver);
       this.bubbles.push(bubble);
+      
+
+      //create treasure
+
+      this.treasure = new Treasure(this.canvas, 3, 'images/treasure.png');
+
+      //clear canvas
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      //Draw bubbles 
+
       for (let i = 0; i < this.bubbles.length; i++) {
         this.bubbles[i].updatePosition();
       }
-      if (this.bubbles.length > 100) {
-        for (let i = 0; i < 20; i++) {
+      if (this.bubbles.length > 1000) {
+        for (let i = 0; i < this.bubbles.length; i++) {
           this.bubbles.pop(this.bubbles[i]);
         }
       }
 
-      //create treasure
+      // Draw treasure 
 
-      this.treasure = new Treasure(this.canvas);
-
-      if (this.timer.value > 10) {
-        console.log("10sec");
+      if (this.timer.value > 30) {
         this.treasure.draw();
       }
 
-      //clear canvas
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       //Check if all obstacles are inside screen. Remove of the array obstacles outside screen
       this.obstacles = this.obstacles.filter((obstacle) => {
@@ -125,13 +130,17 @@ class Game {
       });
 
       //update diver position
-      this.diver.updatePosition();
+      this.diver.updatePosition(this.framesCounter);
 
       //check  obstacle collisions
       this.checkCollisions();
 
       //check coin collision
       this.coinsCollisions();
+
+      if(this.framesCounter > 1000){
+          this.framesCounter = 0;
+      }
 
       // Stop loop in case game over
       if (!this.gameIsOver) {
@@ -156,7 +165,7 @@ class Game {
         obstacle.x = 0 - obstacle.width; // remove obstacle if collision
 
         const collisionSound = new Audio("audio/explosion.wav");
-        collisionSound.volume = 0.3;
+        collisionSound.volume = 0.2;
 
         collisionSound.play();
       }
@@ -171,7 +180,7 @@ class Game {
         coin.x = 0 - coin.width; // remove coins if collision
 
         const coinSound = new Audio("audio/coin(1).wav");
-        coinSound.volume = 0.3;
+        coinSound.volume = 0.2;
         coinSound.play();
       }
     });
