@@ -16,8 +16,8 @@ backgroundDiving.loop = true;
 backgroundSound.volume = .3;
 
 const gameTheme = new Audio('audio/game.wav');
-backgroundDiving.loop = true;
-backgroundSound.volume = .3;
+gameTheme.loop = true;
+gameTheme.volume = .2;
 
 const gameSound = new Audio('audio/game.wav');
 gameSound.loop = true;
