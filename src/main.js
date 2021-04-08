@@ -15,6 +15,10 @@ const backgroundDiving = new Audio("audio/diving.wav");
 backgroundDiving.loop = true;
 backgroundSound.volume = .3;
 
+const gameTheme = new Audio('audio/game.wav');
+backgroundDiving.loop = true;
+backgroundSound.volume = .3;
+
 const gameSound = new Audio('audio/game.wav');
 gameSound.loop = true;
 gameSound.volume = .3
@@ -76,6 +80,7 @@ function createGameScreen() {
         `);
   backgroundSound.play();
   backgroundDiving.play();
+  gameTheme.play();
 
 
   document.body.appendChild(gameScreen);
