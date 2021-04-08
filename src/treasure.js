@@ -1,14 +1,14 @@
 class Treasure{
-    constructor(canvas, speed, treasureImgSrc){
+    constructor(canvas, treasureImgSrc){
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.x = 600;
-        this.y = 350;
-        this.width = 150;
-        this.height = 100;
+        this.y = 300;
+        this.width = 100;
+        this.height = 80;
         this.image = new Image();
         this.image.src = treasureImgSrc;
-        this.speed = speed;
+        this.speed = 2;
     }
 
     draw() {
@@ -18,13 +18,6 @@ class Treasure{
 
     updatePosition() {
         this.x -= this.speed;
-        this.draw();
       }
 
-      isInsideScreen() {
-        const treasureRight = this.x + this.width;
-        const screenLeft = 0;
-        const isInside = treasureRight > screenLeft;
-        return isInside;
-      }
 }

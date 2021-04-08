@@ -112,4 +112,27 @@ class Diver {
       return false;
     }
   }
+
+  collisionTreasure(treasure){
+    const diverLeft = this.x;
+    const diverRight = this.x + this.width;
+    const diverTop = this.y;
+    const diverBottom = this.y + this.height;
+ 
+    const treasureLeft = treasure.x;
+    const treasureRight = treasure.x + treasure.width;
+    const treasureTop = treasure.y;
+    const treasureBottom = treasure.y + treasure.height;
+
+    const crossLeft = treasureLeft <= diverRight && treasureLeft >= diverLeft;
+    const crossRight = treasureRight >= diverLeft && treasureRight <= diverRight;
+    const crossBottom = treasureBottom >= diverTop && treasureBottom <= diverBottom;
+    const crossTop = treasureTop <= diverBottom && treasureTop >= diverTop;
+
+    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -10,7 +10,7 @@ class Bubble {
     }
 
     updatePosition(){
-        this.x -= this.diver.speed;
+        this.x -= this.diver.speed
         this.y += this.speed;
         this.draw();
     }
@@ -21,6 +21,13 @@ class Bubble {
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     }
+
+    isInsideScreen() {
+        const bubblesRight = this.x + this.width;
+        const screenLeft = 0;
+        const isInside = treasureRight > screenLeft;
+        return isInside;
+      }
 
 
 }

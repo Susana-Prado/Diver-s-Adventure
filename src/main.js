@@ -20,6 +20,7 @@ gameSound.loop = true;
 gameSound.volume = .3
 
 const gameOverSound = new Audio('audio/game over.wav');
+gameSound.volume = .3
 
 const youWinSound = new Audio('audio/win(2).wav');
 
@@ -118,7 +119,7 @@ function removeGameOverScreen() {
 function createYouWinScreen() {
     youWinScreen = buildDom(`
           <main>
-              <h1>You win the treasure!</h1>
+              <h1 class = "win">You win the treasure!</h1>
               <p>You got <span>${game.score}</span> coins</p>
               <button>Play again</button>
           </main>
@@ -147,6 +148,8 @@ function startGame() {
   removeSplashScreen();
   if (gameOverScreen) {
     removeGameOverScreen();
+  } else if (youWinScreen){
+      removeYouWinScreen();
   }
   createGameScreen();
 
@@ -158,5 +161,10 @@ function endGame(score) {
   removeGameScreen();
   createGameOverScreen(score);
 }
+
+function winGame(score) {
+    removeGameScreen();
+    createYouWinScreen(score);
+  }
 
 window.addEventListener("load", createSplashScreen);

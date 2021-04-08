@@ -23,6 +23,10 @@ main h1 {
   color: rgb(29, 19, 116);
 }
 
+main .win{
+  font-size: 5em;
+}
+
 main button {
   padding: 10px 30px;
   border: none;
