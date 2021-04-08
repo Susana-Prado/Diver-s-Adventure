@@ -1,3 +1,4 @@
+
 main {
   position: absolute;
   top: 50%;
@@ -11,7 +12,7 @@ main {
   text-align: center;
   align-items: center;
   padding: 50px;
-  background-image: url("../images/fondo.png");
+  background-image: url('/images/screens_background.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -55,6 +56,6 @@ header {
   transform: translate(-50%, -50%);
   margin-top: 20px;
   border: 2px solid black;
-  background-image: url(../images/sea-background.png);
+  background-image: url('/images/game_background.png');
   background-size: cover;
 }

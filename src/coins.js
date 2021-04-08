@@ -13,8 +13,8 @@ class Coin {
 
   draw() {
     this.ctx.fillStyle = "orange";
-    //this.ctx.fillRect(this.x, this.y, this.width, this.height);
-    this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+    //this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
   updatePosition() {

@@ -4,9 +4,9 @@ let gameScreen;
 let gameOverScreen;
 
 // Audio
-const bubbleSound = new Audio("../audio/ES_Water Bubble 7 - SFX Producer.mp3");
+const bubbleSound = new Audio('/audio/water_bubble.mp3');
 
-const backgroundSound = new Audio("../audio/bubbles_54.mp3");
+const backgroundSound = new Audio("/audio/bubbles_54.mp3");
 backgroundSound.loop = true;
 backgroundSound.volume = .3;
 

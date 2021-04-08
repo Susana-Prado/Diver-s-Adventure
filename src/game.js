@@ -26,7 +26,7 @@ class Game {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     //create diver
-    this.diver = new Diver(this.canvas, 5, '/images/spritesheets/black-suited-diver-perframe.png');
+    this.diver = new Diver(this.canvas, 5, '/images/black_suited_diver_perframe.png');
 
     //Move diver up&down
     function handleKeyDown(event) {
@@ -62,7 +62,7 @@ class Game {
           (this.canvas.height - 10) * Math.random()
         );
 
-        const coin = new Coin(this.canvas, randomPositionY, 5, '/images/bitcoin.jpg');
+        const coin = new Coin(this.canvas, randomPositionY, 5);
         this.coins.push(coin);
       }
 

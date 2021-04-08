@@ -11,7 +11,7 @@ class Diver {
     this.speed = 5;
     this.image = new Image();
     this.image.src = diverImgSrc;
-    this.frames = 3;
+    this.frames = 16;
     this.framesIndex = 0;
   }
 
