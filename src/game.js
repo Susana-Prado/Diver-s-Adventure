@@ -32,7 +32,7 @@ class Game {
     this.diver = new Diver(
       this.canvas,
       5,
-      "/images/black_suited_diver_perframe(2).png"
+      "images/black_suited_diver_perframe(2).png"
     );
 
     //create treasure
