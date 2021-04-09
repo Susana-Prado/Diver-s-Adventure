@@ -19,9 +19,6 @@ const gameTheme = new Audio('audio/game.wav');
 gameTheme.loop = true;
 gameTheme.volume = .2;
 
-const gameSound = new Audio('audio/game.wav');
-gameSound.loop = true;
-gameSound.volume = .3
 
 const gameOverSound = new Audio('audio/game over.wav');
 gameSound.volume = .3
@@ -130,11 +127,12 @@ function createYouWinScreen() {
               <button>Play again</button>
           </main>
           `);
-  
+
+      gameTheme.pause();
       backgroundSound.pause();
       backgroundDiving.pause();
       youWinSound.play();
-      gameTheme.pause();
+     
   
     const button = youWinScreen.querySelector("button");
     button.addEventListener("click", (event) => {

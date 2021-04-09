@@ -145,7 +145,7 @@ class Game {
 
       // Update treasure position
 
-      if (this.timer.value > 30) {
+      if (this.timer.value > 15) {
         this.treasure.draw();
         this.treasure.updatePosition();
       }
