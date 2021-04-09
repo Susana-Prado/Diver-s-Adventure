@@ -10,7 +10,7 @@ class Bubble {
     }
 
     updatePosition(){
-        this.x -= this.diver.speed
+        this.x -= this.diver.speed;
         this.y += this.speed;
         this.draw();
     }

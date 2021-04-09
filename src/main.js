@@ -21,7 +21,7 @@ gameTheme.volume = .2;
 
 
 const gameOverSound = new Audio('audio/game over.wav');
-gameSound.volume = .3
+gameOverSound.volume = .3
 
 const youWinSound = new Audio('audio/win(2).wav');
 
